@@ -7,7 +7,7 @@
 ## Get started
 
 ```
-$ git clone https://github.com/oshou/docker-alpine-lemp.git
+$ git clone https://github.com/oshou/docker-lamp-stack.git
 $ cd docker-lamp-stack
 $ docker-compose up -d
 ```
