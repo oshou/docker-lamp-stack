@@ -1,0 +1,34 @@
+version: '2'
+services:
+  data-volume:
+    container_name: 'data-volume'
+    image: busybox
+    volumes: 
+      - ./conf/httpd/apache2:/etc/apache2
+      - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
+      - ./conf/mysql:/etc/mysql
+      # - ./data/www:/var/www
+      - ../../src:/var/www/html
+      - ./data/mysql:/var/lib/mysql
+        # - ./log/httpd/access.log:/dev/stdout
+        # - ./log/httpd:/error.log:/dev/stderr
+      - ./log/mysql:/var/log/mysql
+  web-app:
+    container_name: httpd2.4-php-debian
+    build: ./conf/httpd
+    ports:
+      - 80:80
+    volumes_from:
+      - data-volume
+    working_dir: /var/www
+
+  db:
+    container_name: mysql5.7
+    build: ./conf/mysql
+    ports:
+      - 3306:3306
+    volumes_from:
+      - data-volume
+    working_dir: /var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
