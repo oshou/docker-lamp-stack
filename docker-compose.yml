@@ -5,7 +5,7 @@ services:
     image: busybox
     volumes: 
       - ./conf/httpd/apache2:/etc/apache2
-      - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
+        # - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
       - ./conf/mysql:/etc/mysql
       # - ./data/www:/var/www
       - ../../src:/var/www/html
@@ -14,7 +14,7 @@ services:
         # - ./log/httpd:/error.log:/dev/stderr
       - ./log/mysql:/var/log/mysql
   web-app:
-    container_name: httpd2.4-php-debian
+    container_name: httpd2.4-php56
     build: ./conf/httpd
     ports:
       - 80:80
