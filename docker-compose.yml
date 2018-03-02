@@ -3,15 +3,14 @@ services:
   data-volume:
     container_name: 'data-volume'
     image: busybox
-    volumes: 
+    volumes:
       - ./conf/httpd/apache2:/etc/apache2
-        # - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
+      - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
       - ./conf/mysql:/etc/mysql
-      # - ./data/www:/var/www
       - ../../src:/var/www/html
       - ./data/mysql:/var/lib/mysql
-        # - ./log/httpd/access.log:/dev/stdout
-        # - ./log/httpd:/error.log:/dev/stderr
+      #- ./log/httpd/access.log:/dev/stdout
+      #- ./log/httpd:/error.log:/dev/stderr
       - ./log/mysql:/var/log/mysql
   web-app:
     container_name: httpd2.4-php56
