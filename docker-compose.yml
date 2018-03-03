@@ -17,8 +17,8 @@ services:
     build: ./conf/httpd
     ports:
       - 80:80
-    volumes_from:
-      - data-volume
+        # volumes_from:
+        # - data-volume
     working_dir: /var/www
 
   db:
@@ -26,8 +26,8 @@ services:
     build: ./conf/mysql
     ports:
       - 3306:3306
-    volumes_from:
-      - data-volume
+        # volumes_from:
+        # - data-volume
     working_dir: /var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
