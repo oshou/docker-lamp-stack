@@ -1,5 +1,6 @@
 version: '2'
 services:
+
   data-volume:
     container_name: 'data-volume'
     image: busybox
@@ -9,9 +10,9 @@ services:
       - ./conf/mysql:/etc/mysql
       - ../../src:/var/www/html
       - ./data/mysql:/var/lib/mysql
-      #- ./log/httpd/access.log:/dev/stdout
-      #- ./log/httpd:/error.log:/dev/stderr
+      - ./log/httpd:/var/log/apache2
       - ./log/mysql:/var/log/mysql
+
   web-app:
     container_name: httpd2.4-php56
     build: ./conf/httpd
