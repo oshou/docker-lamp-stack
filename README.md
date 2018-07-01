@@ -1,7 +1,7 @@
 # docker-lamp-stack
 
 ## Stack
-- [debian] apache2.4 + mod-php(php5.6)
+- [debian] apache2.4 + mod-php(php7.2)
 - [debian] mysql5.7
 
 ## Get started
