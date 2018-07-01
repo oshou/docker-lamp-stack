@@ -8,22 +8,23 @@ services:
       - ./conf/httpd/apache2:/etc/apache2
       - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
       - ./conf/mysql:/etc/mysql
-      - /home/oshou/src:/var/www/html
+        # - /home/oshou/src:/var/www/html
+      - /share/src:/var/www/html
       - ./data/mysql:/var/lib/mysql
       - ./log/httpd:/var/log/apache2
       - ./log/mysql:/var/log/mysql
 
   web-app:
-    container_name: httpd2.4-php56
+    container_name: httpd24-php72
     build: ./conf/httpd
     ports:
       - 80:80
     volumes_from:
       - data-volume
-    working_dir: /var/www
+    working_dir: /var/www/html
 
   db:
-    container_name: mysql5.7
+    container_name: mysql57
     build: ./conf/mysql
     ports:
       - 3306:3306

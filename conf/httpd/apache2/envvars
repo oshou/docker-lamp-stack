@@ -18,7 +18,7 @@ export APACHE_RUN_USER
 : ${APACHE_RUN_GROUP:=www-data}
 export APACHE_RUN_GROUP
 # temporary state file location. This might be changed to /run in Wheezy+1
-: ${APACHE_PID_FILE:=/var/run/apache2/apache2$SUFFIX.pid}
+: ${APACHE_PID_FILE:=/var/run/apache2$SUFFIX/apache2.pid}
 export APACHE_PID_FILE
 : ${APACHE_RUN_DIR:=/var/run/apache2$SUFFIX}
 export APACHE_RUN_DIR
