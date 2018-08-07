@@ -8,7 +8,7 @@ services:
       - ./conf/httpd/apache2:/etc/apache2
       - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
       - ./conf/mysql:/etc/mysql
-        # - /home/oshou/src:/var/www/html
+      # - /home/oshou/src:/var/www/html
       - /share/src:/var/www/html
       - ./data/mysql:/var/lib/mysql
       - ./log/httpd:/var/log/apache2
@@ -32,4 +32,4 @@ services:
       - data-volume
     working_dir: /var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: password
