@@ -2,34 +2,52 @@ version: '2'
 services:
 
   data-volume:
-    container_name: 'data-volume'
+    container_name: docker-data
     image: busybox
+    env_file: .env
     volumes:
+      # @common
+      - /etc/localtime:/etc/localtime:ro
+      # @apache2
       - ./conf/httpd/apache2:/etc/apache2
       - ./conf/httpd/php.ini:/usr/local/etc/php/php.ini
-      - ./conf/mysql:/etc/mysql
-      # - /home/oshou/src:/var/www/html
-      - /share/src:/var/www/html
-      - ./data/mysql:/var/lib/mysql
       - ./log/httpd:/var/log/apache2
+      - "${SRC_DIR}:/var/www/html"
+      # @apache2
+      - ./conf/mysql:/etc/mysql
+      - ./data/mysql:/var/lib/mysql
       - ./log/mysql:/var/log/mysql
 
   web-app:
-    container_name: httpd24-php72
+    container_name: docker-httpd-php
     build: ./conf/httpd
+    working_dir: /var/www/html
     ports:
       - 80:80
+    links:
+      - cache
+      - db
     volumes_from:
       - data-volume
-    working_dir: /var/www/html
 
   db:
-    container_name: mysql57
-    build: ./conf/mysql
+    container_name: docker-mysql57
+    image: mysql:5.7
+    working_dir: /var/lib/mysql
     ports:
       - 3306:3306
     volumes_from:
       - data-volume
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  db:
+    container_name: docker-mysql57
+    image: mysql:5.7
     working_dir: /var/lib/mysql
+    ports:
+      - 3306:3306
+    volumes_from:
+      - data-volume
     environment:
       MYSQL_ROOT_PASSWORD: password

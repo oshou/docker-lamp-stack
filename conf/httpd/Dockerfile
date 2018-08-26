@@ -1,4 +1,3 @@
-FROM php:7.2-apache-stretch
-ENV TZ JST-9
+FROM php:7.2.9-apache-stretch
 RUN echo "install mysql mysqli pdo driver" \
-    && docker-php-ext-install mysqli pdo pdo_mysql
+    && docker-php-ext-install pdo_mysql mysqli msbstring
